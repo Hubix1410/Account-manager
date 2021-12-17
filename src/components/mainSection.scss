@@ -30,14 +30,21 @@ $pinkOne: #bb86fc;
       align-items: center;
       justify-content: center;
       button {
-        margin: 0 10px;
-        width: 100px;
-        height: 50px;
+        width: 120px;
+        height: 70px;
+        margin: 10px;
         outline: none;
         background-color: $whiteOne;
-        color: $darkTwo;
-        border: none;
-        font-size: 20px;
+        color: $whiteOne;
+        background-color: transparent;
+        border: 2px solid $whiteOne;
+        font-size: 18px;
+
+        &:hover{
+          border: 2px solid $pinkOne;
+          color: $pinkOne;
+          cursor: pointer;
+        }
       }
     }
   }
@@ -80,13 +87,20 @@ $pinkOne: #bb86fc;
         width: 200px;
 
         > button {
-          width: 80px;
+          width: 90px;
           height: 40px;
           outline: none;
           background-color: $whiteOne;
-          color: $darkTwo;
-          border: none;
+          color: $whiteOne;
+          background-color: transparent;
+          border: 2px solid $whiteOne;
           font-size: 18px;
+
+          &:hover{
+            border: 2px solid $pinkOne;
+            color: $pinkOne;
+            cursor: pointer;
+          }
         }
       }
     }

@@ -47,15 +47,22 @@ $pinkOne: #BB86FC;
             border:2px solid $whiteOne
         }
 
-        button{
-            width:80px;
-            height:40px;
-            margin: 10px;
+        button {
+            width: 90px;
+            height: 40px;
+            margin-top:20px;
             outline: none;
             background-color: $whiteOne;
-            color: $darkTwo;
-            border: none;
+            color: $whiteOne;
+            background-color: transparent;
+            border: 2px solid $whiteOne;
             font-size: 18px;
+  
+            &:hover{
+              border: 2px solid $pinkOne;
+              color: $pinkOne;
+              cursor: pointer;
+            }
         }
     }
 }
