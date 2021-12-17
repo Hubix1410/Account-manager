@@ -1,10 +1,9 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
-import { addUser } from "../actions/actions";
-import "./newUserPopup.scss";
+import { editUser } from "../actions/actions";
+import "./userPopup.scss";
 
-export function NewUserPopup(props) {
-
+export function EditUserPopup(props) {
     const [nameForm, setName] = useState("");
     const [userNameForm, setUserName] = useState("");
     const [emailForm, setEmail] = useState("");
@@ -32,32 +31,33 @@ export function NewUserPopup(props) {
         console.log(cityForm)
     }
 
-    function createNewUser(){
-        const newUser = {
+    function createNewUser() {
+        const editedUser = {
             id: 20,
             name: nameForm,
             username: userNameForm,
             email: emailForm,
-            address:{
+            address: {
                 city: cityForm
             }
         }
 
         props.setTrigger(false)
-        dispatch(addUser(newUser))
-        
+        dispatch(editUser(editedUser, props.index))
     }
 
     return (props.trigger) ? (
-        <div id="popup">
+        <div id="editPopup">
             <div id="popupInner">
-                Name: <input type="text" value={nameForm} onChange={nameFormValid} />
-                User name: <input type="text" value={userNameForm} onChange={userNameFormValid} />
-                Email: <input type="email" value={emailForm} onChange={emailFormValid} />
-                City: <input type="text" value={cityForm} onChange={cityFormValid} />
+                <h2>Edit <span>Account</span></h2>
+
+                <input placeholder="Name" type="text" value={nameForm} onChange={nameFormValid} />
+                <input placeholder="User name" type="text" value={userNameForm} onChange={userNameFormValid} />
+                <input placeholder="Email" type="email" value={emailForm} onChange={emailFormValid} />
+                <input placeholder="City" type="text" value={cityForm} onChange={cityFormValid} />
 
                 <button id="addNewUser" onClick={createNewUser}>
-                    Add
+                    Edit
                 </button>
 
                 <button id="closePopup"

@@ -5,6 +5,14 @@ export const initialAction = (data) => {
     }
 }
 
+export const editUser = (editedUser, index) => {
+    return{
+        type: 'EDITUSER',
+        user: editedUser,
+        index: index
+    }
+}
+
 export const removeUser = (index) => {
     return{
         type: 'REMOVEUSER',

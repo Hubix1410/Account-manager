@@ -1,10 +1,10 @@
 import { useDispatch, useSelector } from "react-redux"
-import { NewUserPopup } from "./newUserPopup/NewUserPopup";
-import { addUser, initialAction, removeUser } from "./actions/actions";
+import { initialAction } from "./actions/actions";
 import "./mainSection.scss";
 import { useState } from "react";
 import { DeleteUserPopup } from "./deleteUserPopup/DeleteUserPopup";
-import { EditUserPopup } from "./editUserPopup/EditUserPopup";
+import { EditUserPopup } from "./userPopups/EditUserPopup";
+import { NewUserPopup } from "./userPopups/NewUserPopup";
 
 export function MainSection() {
 
@@ -21,8 +21,13 @@ export function MainSection() {
         dispatch(initialAction(data));
     }
 
-    function deleteProccess(index){
+    function deleteProccess(index) {
         setDeleteController(true);
+        setCurrentID(index);
+    }
+
+    function editProccess(index) {
+        setEditController(true);
         setCurrentID(index);
     }
 
@@ -41,7 +46,7 @@ export function MainSection() {
                 <li>{element.email}</li>
                 <li>{element.address.city}</li>
                 <li>
-                    <button onClick={() => setEditController(true)}>
+                    <button onClick={() => editProccess(index)}>
                         Edit
                     </button>
                 </li>
@@ -58,8 +63,11 @@ export function MainSection() {
         <div id="wrapper">
 
             <header id="header">
-                <h1>Users list</h1>
-                <button onClick={() => setAddController(true)}>Add new</button>
+                <h1>Users<span>LIST</span></h1>
+                <div id="headDivButton">
+                    <button onClick={() => setAddController(true)}>Add new</button>
+                    <button>Save changes</button>
+                </div>
             </header>
 
             <main id="userTable">
@@ -76,10 +84,6 @@ export function MainSection() {
                 </div>
                 {usersMap}
             </main>
-
-            <footer id="footer">
-                Webpage by Hubert Radzewicz
-            </footer>
 
             <NewUserPopup
                 trigger={addPopupController}

@@ -4,7 +4,7 @@ $darkTwo: #1e1e1e;
 $whiteOne: #fcfcfc;
 $pinkOne: #BB86FC;
 
-#popup {
+#editPopup, #addPopup {
     position: fixed;
     top: 0;
     left: 0;
@@ -17,30 +17,45 @@ $pinkOne: #BB86FC;
     align-items: center;
 
     #popupInner{
-        width:500px;
-        height:200px;
+        width:400px;
+        height:550px;
         background-color: $darkTwo;
         border-radius: 14px;
         display: flex;
         flex-direction: column;
         justify-content: center;
         align-items: center;
+        
+        h2{
+            font-size: 48px;
+            margin:0 0 20px 0;
 
-        p{
-            font-size: 20px;
-            
             span{
                 color:$pinkOne;
             }
         }
 
-        button{
-            width:100px;
+        input{
+            margin: 10px;
             height:40px;
+            width: 250px;
+            padding: 5px;
+            color: $whiteOne;
             font-size: 24px;
-            margin: 10px 20px;
+            outline: none;
+            background-color: transparent;
+            border:2px solid $whiteOne
         }
 
+        button{
+            width:80px;
+            height:40px;
+            margin: 10px;
+            outline: none;
+            background-color: $whiteOne;
+            color: $darkTwo;
+            border: none;
+            font-size: 18px;
+        }
     }
-
 }

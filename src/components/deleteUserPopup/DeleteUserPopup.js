@@ -4,22 +4,29 @@ import "./deleteUserPopup.scss";
 
 export function DeleteUserPopup(props) {
 
-    dispatch = useDispatch()
+    const dispatch = useDispatch()
 
-    function deleteUser(index){
+    function deleteUserProccess(index) {
         props.setTrigger(false);
-        // //dispatch(removeUser(index))
+        dispatch(removeUser(index))
     }
 
     return (props.trigger) ? (
         <div id="popup">
             <div id="popupInner">
-                <p> Are you sure you want to delete this account?</p>
-                <button className="approveDelete">Yes</button>
+                <p> Are you sure you want to delete this <span>ACCOUNT?</span></p>
 
-                // <button className="cancelDelete" onClick={() => deleteUser(props.index)}>
-                //     No
-                // </button>
+                <div id="buttonDiv">
+
+                    <button className="approveDelete" onClick={() => deleteUserProccess(props.index)}>
+                        Yes
+                    </button>
+
+                    <button className="cancelDelete" onClick={() => props.setTrigger(false)}>
+                        No
+                    </button>
+
+                </div>
             </div>
         </div>
     ) : ""

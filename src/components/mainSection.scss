@@ -1,60 +1,94 @@
-#wrapper{
-    width:100%;
-    height:800px;
+$darkOne: #292929;
+$darkTwo: #1e1e1e;
+$whiteOne: #fcfcfc;
+$pinkOne: #bb86fc;
 
-    #header{
-        display: flex;
-        flex-direction: row;
-        justify-content: space-between;
-        padding:0 40px;
+#wrapper {
+  width: 100%;
+  height: 800px;
+  color: $whiteOne;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+
+  #header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 40px;
+    background-color: $darkTwo;
+
+    h1 {
+      font-size: 48px;
+
+      > span {
+        color: $pinkOne;
+      }
     }
 
+    #headDivButton {
+      display:flex;
+      align-items: center;
+      justify-content: center;
+      button {
+        margin: 0 10px;
+        width: 100px;
+        height: 50px;
+        outline: none;
+        background-color: $whiteOne;
+        color: $darkTwo;
+        border: none;
+        font-size: 20px;
+      }
+    }
+  }
 
-    #userTable{
-        display:flex;
-        flex-direction: column;
+  #userTable {
+    display: flex;
+    flex-direction: column;
 
-        #menu ul{
-            list-style: none;
-            padding:0;
-            display:flex;
-            flex-direction: row;
-            justify-content: space-around;
-            align-items: center;
-            font-size: 22px;
+    #menu > ul {
+      padding: 10px 0;
+      margin: 0;
+      font-size: 24px;
+      background-color: $darkTwo;
+    }
 
+    .userDiv:nth-child(even) {
+      background-color: $darkOne;
+    }
 
-            li:nth-child(1){
-                width:20px;
-            }
+    .userDiv:nth-child(odd) {
+      background-color: $darkTwo;
+    }
 
-            li{
-                width:200px;
-            }
+    ul {
+      list-style: none;
+      padding: 0;
+      display: flex;
+      flex-direction: row;
+      justify-content: space-around;
+      align-items: center;
+      height: 60px;
+      font-size: 18px;
+
+      li:nth-child(1) {
+        width: 20px;
+        color: $pinkOne;
+      }
+
+      li {
+        width: 200px;
+
+        > button {
+          width: 80px;
+          height: 40px;
+          outline: none;
+          background-color: $whiteOne;
+          color: $darkTwo;
+          border: none;
+          font-size: 18px;
         }
-
-        .userDiv{
-            
-            ul {
-                list-style: none;
-                padding:0;
-                display:flex;
-                flex-direction: row;
-                justify-content: space-around;
-                align-items: center;
-
-                li:nth-child(1){
-                    width:20px;
-                }
-
-                li{
-                    width:200px;
-                }
-            }
-        }
+      }
     }
-
-    #footer{
-        background-color: antiquewhite;
-    }
+  }
 }
