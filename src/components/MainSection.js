@@ -1,25 +1,35 @@
 import { useDispatch, useSelector } from "react-redux"
-import { initialAction, removeUser } from "./actions/actions";
+import { NewUserPopup } from "./newUserPopup/NewUserPopup";
+import { addUser, initialAction, removeUser } from "./actions/actions";
 import "./mainSection.scss";
+import { useState } from "react";
+import { DeleteUserPopup } from "./deleteUserPopup/DeleteUserPopup";
+import { EditUserPopup } from "./editUserPopup/EditUserPopup";
 
 export function MainSection() {
 
+    const [addPopupController, setAddController] = useState(false);
+    const [deletePopupController, setDeleteController] = useState(false);
+    const [editPopupController, setEditController] = useState(false);
+    const [currentID, setCurrentID] = useState(-1);
+
     const dispatch = useDispatch();
     let usersData = useSelector(store => store);
-    console.log(usersData);
+
 
     function showUsers(data) {
         dispatch(initialAction(data));
+    }
+
+    function deleteProccess(index){
+        setDeleteController(true);
+        setCurrentID(index);
     }
 
     if (usersData.users.length === 0) {
         fetch('https://my-json-server.typicode.com/karolkproexe/jsonplaceholderdb/data')
             .then(response => response.json())
             .then(data => showUsers(data))
-    }
-
-    function editUser(index){
-        console.log("editeded user: " + index);
     }
 
     let usersMap = usersData.users.map((element, index) =>
@@ -30,8 +40,16 @@ export function MainSection() {
                 <li>{element.username}</li>
                 <li>{element.email}</li>
                 <li>{element.address.city}</li>
-                <li><button onClick={() => editUser(index)}>Edit</button></li>
-                <li><button onClick={() => dispatch(removeUser(index))}>Remove</button></li>
+                <li>
+                    <button onClick={() => setEditController(true)}>
+                        Edit
+                    </button>
+                </li>
+                <li>
+                    <button onClick={() => deleteProccess(index)}>
+                        Remove
+                    </button>
+                </li>
             </ul>
         </div>
     )
@@ -41,7 +59,7 @@ export function MainSection() {
 
             <header id="header">
                 <h1>Users list</h1>
-                <button>Add new</button>
+                <button onClick={() => setAddController(true)}>Add new</button>
             </header>
 
             <main id="userTable">
@@ -62,6 +80,23 @@ export function MainSection() {
             <footer id="footer">
                 Webpage by Hubert Radzewicz
             </footer>
+
+            <NewUserPopup
+                trigger={addPopupController}
+                setTrigger={setAddController}
+            />
+
+            <DeleteUserPopup
+                trigger={deletePopupController}
+                setTrigger={setDeleteController}
+                index={currentID}
+            />
+
+            <EditUserPopup
+                trigger={editPopupController}
+                setTrigger={setEditController}
+                index={currentID}
+            />
 
         </div>
 

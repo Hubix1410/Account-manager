@@ -6,9 +6,20 @@ const userReducer = (state = initialstate, action) => {
             return {
                 ...state, users: action.data
             }
-        case 'REMOVE':
+        case 'REMOVEUSER':
+            // let removeUserState = state.users;
+            // console.log("yooo", removeUserState, action.user);
+            // return {
+            //     ...state, users: removeUserState
+            // }
+            return state
+
+        case 'ADDUSER':
+            let addUserState = state.users;
+            addUserState.push(action.user)
+            console.log("yooo", addUserState, action.user);
             return {
-                ...state, users: state.users.splice(action.index++ , state.users.length--)
+                ...state, users: addUserState
             }
         default:
             return state;

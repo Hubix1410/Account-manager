@@ -6,8 +6,8 @@ import './app.scss'
 
 function App() {
 
-  const store = createStore(userReducer
-  );
+  const store = createStore(userReducer,
+    window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__());
 
   return (
     <div className="App">

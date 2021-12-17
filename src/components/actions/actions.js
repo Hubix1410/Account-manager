@@ -7,7 +7,14 @@ export const initialAction = (data) => {
 
 export const removeUser = (index) => {
     return{
-        type: 'REMOVE',
+        type: 'REMOVEUSER',
         index: index
+    }
+}
+
+export const addUser = (newUser) => {
+    return{
+        type: 'ADDUSER',
+        user: newUser
     }
 }
