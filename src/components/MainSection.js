@@ -31,33 +31,53 @@ export function MainSection() {
         setCurrentID(index);
     }
 
-    if (usersData.users.length === 0) {
-        fetch('https://my-json-server.typicode.com/karolkproexe/jsonplaceholderdb/data')
+    function saveChanges() {
+        fetch('https://my-json-server.typicode.com/Hubix1410/proexeProjectDB/data', {
+            method: 'PUT',
+            headers: {
+                'Content-type': 'application/json; charset=UTF-8'
+            },
+            body: JSON.stringify(usersData)
+        })
+            .then(response => response.json())
+            .then(data => console.log(data))
+            .catch(err => console.log(err))
+        dispatch(initialAction("none"))
+    }
+
+    if (usersData.users === "none") {
+        fetch('https://my-json-server.typicode.com/Hubix1410/proexeProjectDB/data')
             .then(response => response.json())
             .then(data => showUsers(data))
     }
 
-    let usersMap = usersData.users.map((element, index) =>
-        <div key={index} className="userDiv">
-            <ul>
-                <li>{element.id}</li>
-                <li>{element.name}</li>
-                <li>{element.username}</li>
-                <li>{element.email}</li>
-                <li>{element.address.city}</li>
-                <li>
-                    <button onClick={() => editProccess(index)}>
-                        Edit
-                    </button>
-                </li>
-                <li>
-                    <button onClick={() => deleteProccess(index)}>
-                        Remove
-                    </button>
-                </li>
-            </ul>
-        </div>
-    )
+    let usersMap = "";
+
+    if (usersData.users.length === 0 || usersData.users === "none") {
+        usersMap = <h3>There is no users to show.</h3>
+    } else {
+        usersMap = usersData.users.map((element, index) =>
+            <div key={index} className="userDiv">
+                <ul>
+                    <li>{element.id}</li>
+                    <li>{element.name}</li>
+                    <li>{element.username}</li>
+                    <li>{element.email}</li>
+                    <li>{element.address.city}</li>
+                    <li>
+                        <button onClick={() => editProccess(index)}>
+                            Edit
+                        </button>
+                    </li>
+                    <li>
+                        <button onClick={() => deleteProccess(index)}>
+                            Remove
+                        </button>
+                    </li>
+                </ul>
+            </div>
+        )
+    }
 
     return (
         <div id="wrapper">
@@ -66,7 +86,7 @@ export function MainSection() {
                 <h1>Users<span>LIST</span></h1>
                 <div id="headDivButton">
                     <button onClick={() => setAddController(true)}>Add new</button>
-                    <button>Save changes</button>
+                    <button onClick={() => saveChanges()}>Save changes</button>
                 </div>
             </header>
 

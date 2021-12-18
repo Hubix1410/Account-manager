@@ -32,8 +32,26 @@ export function EditUserPopup(props) {
     }
 
     function createNewUser() {
+
+        if (nameForm.length <= 3) {
+            alert("Name is too short.");
+            return false;
+        } else if (userNameForm.length <= 3) {
+            alert("User name is too short.");
+            return false;
+        } else if (cityForm.length <= 3) {
+            alert("City name is too short.");
+            return false;
+        }
+        if (emailForm.match(/^[^ ]+@[^ ]+\.[a-z]{2,3}$/)) {
+            
+        } else {
+            alert("Wrong email")
+            return false;
+        }
+
         const editedUser = {
-            id: 20,
+            id: 0,
             name: nameForm,
             username: userNameForm,
             email: emailForm,
@@ -44,6 +62,10 @@ export function EditUserPopup(props) {
 
         props.setTrigger(false)
         dispatch(editUser(editedUser, props.index))
+        setName("");
+        setUserName("");
+        setCity("");
+        setEmail("");
     }
 
     return (props.trigger) ? (

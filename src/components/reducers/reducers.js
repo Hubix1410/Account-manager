@@ -1,4 +1,4 @@
-const initialstate = { users: [] };
+const initialstate = { users: "none" };
 
 const userReducer = (state = initialstate, action) => {
     switch (action.type) {
@@ -10,13 +10,19 @@ const userReducer = (state = initialstate, action) => {
         case 'REMOVEUSER':
             let removeUserState = state.users;
             removeUserState.splice(action.index, 1)
+            removeUserState.forEach((element,index) => {
+                element.id = index + 1;
+            });
             return {
                 ...state, users: removeUserState
             }
 
         case 'ADDUSER':
-            let addUserState = state.users;
+            let addUserState = state.users
             addUserState.push(action.user)
+            addUserState.forEach((element,index) => {
+                element.id = index + 1;
+            });
             return {
                 ...state, users: addUserState
             }
